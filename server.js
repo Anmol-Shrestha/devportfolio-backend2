@@ -4,14 +4,18 @@ const path = require('path');
 const { bundleMDX } = require('mdx-bundler');
 const esbuild = require('esbuild');
 const app = express();
-const PORT = 3001; // Or any port you prefer
+
+
+// --- 1. PORT ---
+const PORT = process.env.PORT || 3001;
 
 // --- 1. CORS Configuration ---
-// Allow requests from your frontend development environment (e.g., localhost:3000)
+
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 const corsOptions = {
-    origin: ['http://localhost:3000','https://www.anmolsagarshrestha.com.np/'], // <-- IMPORTANT: Change this to your frontend URL in production
-    methods: 'POST',
-    allowedHeaders: ['Content-Type'],
+  origin: FRONTEND_URL,
+  methods: 'POST',
+  allowedHeaders: ['Content-Type'],
 };
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' })); // Middleware to parse JSON body with increased limit for long MDX
@@ -66,6 +70,6 @@ app.post('/api/compile-mdx', async (req, res) => {
 
 // --- 4. Server Start ---
 app.listen(PORT, () => {
-    console.log(`🚀 MDX Compiler server running on http://localhost:${PORT}`);
+    console.log(`🚀 MDX Compiler server running on ${PORT}`);
     console.log(`   CORS configured for frontend at ${corsOptions.origin}`);
 });
