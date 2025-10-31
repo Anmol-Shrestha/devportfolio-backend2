@@ -1,0 +1,19 @@
+{
+  "name": "devportfolio-backend2",
+  "type":"commonjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "esbuild": "^0.25.11",
+    "express": "^5.1.0",
+    "mdx-bundler": "^10.1.1"
+  }
+}
